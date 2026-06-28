@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Évaluation - Pharmacologie</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles de secours pour garantir le bon affichage des nouveautés */
+        .badge-type {
+            display: inline-block;
+            padding: 5px 10px;
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .option-btn {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            background: #fff;
+            border: 1px solid #d0d7e2;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 15px;
+            color: #2c3e50;
+        }
+        .option-btn.selected {
+            background: #34495e;
+            color: #fff;
+            border-color: #2c3e50;
+        }
+        .hidden {
+            display: none !important;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background: #8e44ad;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="login-screen" class="box">
+            <h2>Évaluation de Pharmacologie</h2>
+            <p>Entrez vos informations pour commencer</p>
+            <p id="total-online" style="color: #8e44ad; font-weight: bold; margin-top:10px; font-size:14px;">Chargement des participants...</p>
+            
+            <input type="text" id="student-name" placeholder="Nom et Prénom" required>
+            <button onclick="startExam()">Commencer l'épreuve</button>
+        </div>
+
+        <div id="exam-screen" class="box hidden">
+            <div class="header-exam">
+                <span id="timer">Temps restant : 30s</span>
+                <span id="progress">Question 1/40</span>
+            </div>
+            
+            <div id="question-container">
+                <div id="quiz-type" class="badge-type"></div>
+                <p id="question-text">Chargement de la question...</p>
+                <div id="options-container"></div>
+            </div>
+
+            <button id="next-btn" onclick="nextQuestion()" disabled>Valider la réponse</button>
+        </div>
+
+        <div id="result-screen" class="box hidden">
+            <h2>Fin de l'évaluation !</h2>
+            <p id="result-text">Envoi de votre note en cours...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

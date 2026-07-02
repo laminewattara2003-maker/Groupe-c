@@ -1,49 +1,39 @@
 // ==========================================
 // PARTIE 1 : DATA ET VARIABLES GLOBALES
 // ==========================================
+let questions = [
+    // --- PARTIE 1 : 25 QUESTIONS À CHOIX DRASTIQUE (QCD / VRAI-FAUX) ---
+    {q: "1- La cellule peut survivre dans un environnement en perpétuel changement.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "2- Le corps humain est composé de millions de cellules.", o: ["A- Vrai", "B- Faux"], a: ["B"]}, // Faux, le cours précise "billions"
+    {q: "3- Les métazoaires sont des êtres vivants unicellulaires.", o: ["A- Vrai", "B- Faux"], a: ["B"]}, // Faux, ce sont les protozoaires
+    {q: "4- L'azote (N) fait partie des 4 éléments chimiques de base du vivant.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "5- Les molécules se combinent entre elles pour donner directement des tissus.", o: ["A- Vrai", "B- Faux"], a: ["B"]}, // Faux, elles donnent les cellules, qui donnent les tissus
+    {q: "6- Les glucides ou sucres constituent une source d'énergie pour la cellule.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "7- Le fer (Fe) est nécessaire à la coagulation du sang.", o: ["A- Vrai", "B- Faux"], a: ["B"]}, // Faux, c'est le Calcium (Ca). Le Fer est pour l'hémoglobine.
+    {q: "8- Les oligoéléments sont moins abondants mais très importants pour les fonctions cellulaires.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "9- L'ion Sodium (Na+) et le Potassium (K+) sont essentiels à la propagation de l'influx nerveux.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "10- Les cellules vivantes sont composées d'environ 80% d'eau.", o: ["A- Vrai", "B- Faux"], a: ["B"]}, // Faux, le cours indique environ 60% d'eau
+    {q: "11- Le liquide interstitiel est une solution salée diluée analogue à l'eau de mer.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "12- La cellule ne peut être étudiée qu'au microscope.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "13- Une cellule peut mesurer de 2 microns jusqu'à un mètre de long.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "14- Les cellules musculaires lisses ont une forme à 'deux bouts pointus'.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "15- Toutes les cellules comprennent trois (03) régions principales.", o: ["A- Vrai", "B- Faux"], a: ["A"]}, // Membrane, cytoplasme, noyau
+    {q: "16- La membrane plasmique assure l'intégrité de la cellule.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "17- Le cytosol ou hyaloplasme est un liquide translucide constitué en grande partie d'eau.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "18- Les nucléoles (au nombre de 2) sont limités par une membrane épaisse.", o: ["A- Vrai", "B- Faux"], a: ["B"]}, // Faux, structures non limitées par une membrane
+    {q: "19- La chromatine renferme 46 chromosomes constitués par l'ADN.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "20- Le chondriome ou appareil mitochondrial gère l'activité sécrétoire de la cellule.", o: ["A- Vrai", "B- Faux"], a: ["B"]}, // Faux, il gère l'activité (respiration), c'est Golgi qui est sécrétoire
+    {q: "21- L'ergastoplasme désigne des ribosomes en activité intense de synthèse protéique.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "22- La pinocytose concerne l'ingestion de matériels solides.", o: ["A- Vrai", "B- Faux"], a: ["B"]}, // Faux, pinocytose = liquides, phagocytose = solide
+    {q: "23- Les cellules anaérobies trouvent l'O2 par des actions chimiques particulières.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
+    {q: "24- L'amitose est le mode de division des cellules pluricellulaires.", o: ["A- Vrai", "B- Faux"], a: ["B"]}, // Faux, amitose = unicellulaires, mitose = pluricellulaires
+    {q: "25- La cellule est morte quand l'anabolisme a définitivement cessé.", o: ["A- Vrai", "B- Faux"], a: ["A"]},
 
-// 1. BASE DE DONNÉES DES 40 QUESTIONS
-let quizData = [
-    {q:`1- Le principe actif des suspensions buvables est :`,o:[`A- Stable dans le sel`,`B- Instable dans l'eau`,`C- Stable dans le l'huile`,`D- Instable dans l'huile`],a:["B"]},
-    {q:`2- Le médicament sert à :`,o:[`A- Guérir les maladies`,`B- Autres`,`C- Prévenir les maladies`,`D- Autre`],a:["A", "C"]},
-    {q:`3- Dispenser le médicament consiste à :`,o:[`A- Donner la posologie au patient`,`B- Ne pas préciser les effets secondaires`,`C- Entreposer le médicament`,`D- Autres`],a:["A"]},
-    {q:`4- Le principe actif (PA) d'un médicament est aussi :`,o:[`A- Son nom commercial`,`B- Son nom international`,`C- Son excipient`,`D- Autre`],a:["B"]},
-    {q:`5- Dans EFFERALGAN 500 mg comprimé effervescent peut se prendre :`,o:[`A- Par voie percutanée`,`B- Par voie transmuqueuse`,`C- Par voie parentérale`,`D- Autre`],a:["D"]},
-    {q:`6- La pharmacie galénique c'est :`,o:[`A- L'étude du mode d'action du médicament`,`B- L'étude des plantes médicinales`,`C- L'étude de la forme du médicament`,`D- Autre`],a:["C"]},
-    {q:`7- Les sirops sont des préparations médicamenteuses :`,o:[`A- Saturées en eau`,`B- Saturées en sel`,`C- Saturées en lipide`,`D- Saturées en sucre`],a:["D"]},
-    {q:`8- Les suspensions buvables doivent être préparées :`,o:[`A- Après la prise du médicament`,`B- Avant la prise du médicament`,`C- Pendant la prise du médicament`,`D- Autre`],a:["B"]},
-    {q:`9- La voie parentérale c'est l'administration des médicaments par :`,o:[`E- Per os`,`F- Intra musculaire (IM)`,`G- Voie anale`,`H- Voie cutanée`],a:["F"]},
-    {q:`10- Les inconvénients de la voie PER OS sont :`,o:[`A- Inobservance du traitement à cause du goût`,`B- Antiallergique`,`C- Antiparasitaire`,`D- Impossibilité d'administration si trouble de la déglutition`],a:["A", "D"]},
-    {q:`11- Il faut la présence obligatoire d'un infirmier pour pratiquer :`,o:[`A- La voie percutanée`,`B- La voie transmuqueuse`,`C- La voie per os`,`D- Autre`],a:["D"]},
-    {q:`12- La D.C.I du médicament c'est :`,o:[`E- sa dénomination commerciale`,`F- sa dénomination commune internationale`,`G- son principe actif`,`H- Autres`],a:["F", "G"]},
-    {q:`13- L'allergie aux excipients d'un médicament est un :`,o:[`E- Effet bénéfique`,`F- Effet non voulu`,`G- Effet secondaire`,`H- Autre`],a:["F", "G"]},
-    {q:`14- En cas d'effets secondaire d'un médicament il faut :`,o:[`E- Diminution de la dose`,`F- Augmenter la dose`,`G- Changer de prescription`,`H- Autres`],a:["E", "G"]},
-    {q:`15- Dans une ordonnance médicale, il faut :`,o:[`E- La D.C.I`,`F- Le dosage`,`G- Un excipient`,`H- Le conditionnement primaire`],a:["E", "F"]},
-    {q:`16- En pharmacologie, il y a :`,o:[`E- 2 voies de prise des médicaments`,`F- 5 voies de prise des médicaments`,`G- 1 seule voie de prise des médicaments`,`H- 6 voies de prise des médicaments`],a:["F"]},
-    {q:`17- La voie parentérale concerne :`,o:[`E- La voie sous-cutanée`,`F- La voie orale`,`G- La voie intra-veineuse`,`H- La voie percutanée`],a:["E", "G"]},
-    {q:`18- La voie transmuqueuse associe :`,o:[`A- La voie oculaire`,`B- La voie rectale`,`C- La voie cutanée`,`D- La voie sublinguale`],a:["A", "B", "D"]},
-    {q:`19- La pharmacognosie est l'étude :`,o:[`I- Des plantes médicinales`,`J- Du médicament depuis son administration jusqu'à son élimination`,`K- Des bactéries`,`L- Autres`],a:["I"]},
-    {q:`20- Le principe actif (PA) d'un médicament est aussi :`,o:[`I- Son nom commercial`,`J- Son nom international`,`K- Son excipient`,`L- Autre`],a:["J"]},
-    {q:`21- L'effet indésirable d'un médicament peut être :`,o:[`E- Une pharmaco dépendance`,`F- L'indication thérapeutique`,`G- Une allergie au principe actif`,`H- Un Décès du patient`],a:["E", "G", "H"]},
-    {q:`22- La rapidité des effets du médicament est obtenue par :`,o:[`I- La voie sous-cutanée`,`J- La voie orale`,`K- La voie intra-veineuse`,`L- La voie percutanée`],a:["I", "K"]},
-    {q:`23- Le médicament sert :`,o:[`M- Seulement aux maladies humaines`,`N- Seulement aux maladies animales`,`M- A la fois aux maladies humaines et animales`,`O- Aux maladies des plantes`],a:["M"]},
-    {q:`24- Dans EFFERALGAN 500 mg :`,o:[`N- Le principe actif est paracétamol 500 milligrammes`,`I- L'acide acétylsalicylique 500 milligrammes`,`J- La carbocysteine 500 milligrammes`,`K- Autres`],a:["N"]},
-    {q:`25- Dans EFFERALGAN 500 milligrammes, le benzoate de sodium est :`,o:[`I- Le conditionnement secondaire`,`J- Le principe actif`,`K- Autre`,`L- Le conditionnement primaire`],a:["K"]},
-    {q:`26- Les formes injectables sont des préparations galéniques :`,o:[`O- Non stériles`,`P- Autres`,`Q- A inhaler`,`R- Stériles`],a:["R"]},
-    {q:`27- Dans un médicament l'eau est :`,o:[`S- Un principe actif`,`T- Un excipient`,`U- Un conditionnement`,`V- Autre`],a:["T"]},
-    {q:`28- En pharmacologie, l'IVD est aussi appelée :`,o:[`W- La voie intra veineuse`,`X- Autres`,`Y- La voie sous-`,`Z- La voie intra veineuse directe`],a:["Z"]},
-    {q:`29- Les crèmes sont des préparations :`,o:[`A- Lavables à l'eau`,`B- Non lavables à l'eau`,`C- A inhaler`,`D- Stériles`],a:["A"]},
-    {q:`30- Les médicaments magistraux sont :`,o:[`A- Des spécialités pharmaceutiques`,`B- Autres`,`C- Des médicaments officinaux`,`D- Préparés par le pharmacien ou le PGP`],a:["D"]},
-    {q:`31- Les médicaments génériques constituent :`,o:[`A- L'original d'un médicament`,`B- La DCI d'un médicament`,`C- Autre`,`D- Une copie de l'originale d'un médicament`],a:["D"]},
-    {q:`32- L'intérêt de la prescription en D.C.I c'est :`,o:[`A- D'améliorer disponibilité des médicaments`,`B- Autres`,`C- De choisir une spécialité pharmaceutique`,`D- De réduire le risque de prendre plusieurs médicaments portant des noms différents mais contenant un même principe actif`],a:["A", "D"]},
-    {q:`33- Le numéro de téléphone est :`,o:[`A- Nécessaire à inscrire sur l'ordonnance`,`B- Autres`,`E- N'est pas nécessaire à inscrire sur l'ordonnance`,`F- Permet de réduire le risque de prendre plusieurs médicaments`],a:["A"]},
-    {q:`34- La PHARMACIE est un lieu :`,o:[`A- De vente seulement des médicaments`,`B- De vente et de conseil sur les médicaments`,`G- De choix d'une spécialité pharmaceutique`,`H- De stockage des médicaments`],a:["B", "H"]},
-    {q:`35- L'arrêt définitif du traitement doit se faire :`,o:[`A- Autre`,`C- En cas d'effet curatif`,`I- En cas de prévention`,`J- En cas d'effets indésirables`],a:["J"]},
-    {q:`36- COARTEM 80 mg est :`,o:[`A- Le nom commercial d'un médicament`,`B- Autres`,`K- Une D.C.I d un médicament`,`L- Un principe actif d'un médicament`],a:["A"]},
-    {q:`37- L'alcool à 70 degrés est :`,o:[`A- Un générique`,`B- Un médicament officinal`,`M- Une spécialité pharmaceutique`,`N- Un médicament magistral`],a:["B"]},
-    {q:`38- La VENTOLINE SPRAY est à prendre par voie :`,o:[`A- Transmuqueuse`,`B- Autre`,`O- Per os`,`P- Parentérale`],a:["A", "B", "O"]},
-    {q:`39- Le paracétamol en suppositoire est destiné à être administré par voie :`,o:[`A- Vaginale`,`B- Per os`,`Q- Pulmonaire`,`R- Rectale`],a:["R"]},
-    {q:`40- La voie percutanée concerne :`,o:[`A- Les oreilles`,`B- La peau`,`S- La bouche`,`T- Les poumons`],a:["B"]}
+    // --- PARTIE 2 : 15 QUESTIONS À CHOIX MULTIPLES (QCM) ---
+    {q: "26- Quelles sont les propriétés fondamentales de la matière vivante possédées par les cellules ?", o: ["A- L'information héréditaire", "B- La synthèse et la croissance", "C- La division et la reproduction", "D- La stabilité thermique absolue"], a: ["A", "B", "C"]},
+    {q: "27- Quels sont les 4 éléments de base (atomes) révélés par l'analyse chimique chez le vivant ?", o: ["A- Le carbone (C)", "B- L'oxygène (O)", "C- L'hydrogène (H) et l'azote (N)", "D- Le magnésium (Mg)"], a: ["A", "B", "C"]},
+    {q: "28- Concernant la classification en molécules selon leurs propriétés physico-chimiques :", o: ["A- Les protides ont pour type le blanc d'œuf", "B- Les lipides sont des corps gras", "C- Les glucides sont des acides aminés", "D- Les glucides ou sucres sont des sources d'énergie"], a: ["A", "B", "D"]},
+    {q: "29- À propos du rôle des oligoéléments dans l'organisme :", o: ["A- Le calcium (Ca) est nécessaire à la coagulation du sang", "B- Le fer (Fe) entre dans la composition de l'hémoglobine", "C- L'iode (I) intervient dans la synthèse de l'hormone thyroïdienne", "D- Ils sont abondants et représentent 80% de la cellule"], a: ["A", "B", "C"]},
 ];
 
 // Mélange automatique des questions

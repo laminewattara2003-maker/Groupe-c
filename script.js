@@ -33,7 +33,7 @@ let questions = [
     {q: "26- Quelles sont les propriétés fondamentales de la matière vivante possédées par les cellules ?", o: ["A- L'information héréditaire", "B- La synthèse et la croissance", "C- La division et la reproduction", "D- La stabilité thermique absolue"], a: ["A", "B", "C"]},
     {q: "27- Quels sont les 4 éléments de base (atomes) révélés par l'analyse chimique chez le vivant ?", o: ["A- Le carbone (C)", "B- L'oxygène (O)", "C- L'hydrogène (H) et l'azote (N)", "D- Le magnésium (Mg)"], a: ["A", "B", "C"]},
     {q: "28- Concernant la classification en molécules selon leurs propriétés physico-chimiques :", o: ["A- Les protides ont pour type le blanc d'œuf", "B- Les lipides sont des corps gras", "C- Les glucides sont des acides aminés", "D- Les glucides ou sucres sont des sources d'énergie"], a: ["A", "B", "D"]},
-    {q: "29- À propos du rôle des oligoéléments dans l'organisme :", o: ["A- Le calcium (Ca) est nécessaire à la coagulation du sang", "B- Le fer (Fe) entre dans la composition de l'hémoglobine", "C- L'iode (I) intervient dans la synthèse de l'hormone thyroïdienne", "D- Ils sont abondants et représentent 80% de la cellule"], a: ["A", "B", "C"]},
+    {q: "29- À propos du rôle des oligoéléments dans l'organisme :", o: ["A- Le calcium (Ca) est nécessaire à la coagulation du sang", "B- Le fer (Fe) entre dans la composition de l'hémoglobine", "C- L'iode (I) intervient dans la synthèse de l'hormone thyroïdienne", "D- Ils sont abondants et représentent 80% de la cellule"], a: ["A", "B", "C"]}
 ];
 
 // Mélange automatique des questions
